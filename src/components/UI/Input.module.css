@@ -1,0 +1,13 @@
+.input {
+  /* border: 3px solid green; */
+  border: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  width: 60rem;
+  transition: all 0.5s;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom: 3px solid black;
+}

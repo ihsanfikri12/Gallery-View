@@ -1,0 +1,16 @@
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 2rem;
+}
+
+.icon {
+  fill: black;
+  height: 3rem;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,34 @@
+.backdrop {
+  cursor: pointer;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  z-index: 1;
+  opacity: 0.8;
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+.frame {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  overflow: hidden;
+  z-index: 2;
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+.img {
+  width: 100rem;
+  object-fit: cover;
+}
