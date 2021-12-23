@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-
-import getImage from "../helpers/getImage";
 
 import style from "./GallerySearch.module.css";
 import { ReactComponent as Logo } from "./search-outline.svg";
 
 const GallerySearch = (props) => {
+  const data = useRef();
   const [searchInput, setSearchInput] = useState("");
 
   const addInputHandler = (event) => {
@@ -25,8 +24,10 @@ const GallerySearch = (props) => {
     setSearchInput("");
   };
 
+  // console.log(getComputedStyle(data.current).width);
+
   return (
-    <div className={style.search}>
+    <div ref={data} className={style.search}>
       <form onSubmit={submitInputHandler} className={style.form}>
         <Input
           type="search"
