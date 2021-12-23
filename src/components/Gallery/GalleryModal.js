@@ -1,6 +1,24 @@
 import React from "react";
+import ReactDom from "react-dom";
 
 import style from "./GalleryModal.module.css";
+
+const Backdrop = (props) => {
+  return (
+    <div
+      onClick={props.onClick}
+      className={`${style.backdrop} ${props.image ? style.visible : ""}`}
+    ></div>
+  );
+};
+
+const Overlay = (props) => {
+  return (
+    <div className={`${style.frame} ${props.image ? style.visible : ""}`}>
+      <img className={style.img} src={props.image} />
+    </div>
+  );
+};
 
 const GalleryModal = (props) => {
   const removeModalHandler = (event) => {
@@ -13,19 +31,18 @@ const GalleryModal = (props) => {
 
   return (
     <React.Fragment>
-      <div
-        onClick={removeModalHandler}
-        className={
-          props.image ? `${style.backdrop} ${style.visible}` : style.backdrop
-        }
-      ></div>
-      <div
-        className={
-          props.image ? `${style.frame} ${style.visible}` : style.frame
-        }
-      >
-        <img className={style.img} src={props.image} />
-      </div>
+      {ReactDom.createPortal(
+        <Backdrop image={props.image} onClick={removeModalHandler} />,
+        document.getElementById("backdrop-root")
+      )}
+
+      {ReactDom.createPortal(
+        <Overlay image={props.image} />,
+        document.getElementById("overlay-root")
+      )}
+
+      {/* <Backdrop image={props.image} onClick={removeModalHandler} />
+      <Overlay image={props.image} /> */}
     </React.Fragment>
   );
 };

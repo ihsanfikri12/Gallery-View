@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 
-import unplash from "../../api/unsplash";
+import getImage from "../helpers/getImage";
 
 import style from "./GallerySearch.module.css";
 import { ReactComponent as Logo } from "./search-outline.svg";
@@ -21,19 +21,7 @@ const GallerySearch = (props) => {
     input.value = "";
     input.blur();
 
-    const image = await unplash.get("/search/photos", {
-      params: {
-        query: searchInput,
-        per_page: 9,
-      },
-    });
-
-    const { results } = image.data;
-
-    if (results.length !== 0) {
-      props.addImage(results);
-    }
-
+    props.addImage(searchInput);
     setSearchInput("");
   };
 

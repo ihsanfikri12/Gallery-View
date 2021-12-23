@@ -1,33 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import style from "./GalleryLoad.module.css";
 
-const GalleryLoad = () => {
-  const loadImage = document.querySelector(".loadImage");
-  console.log(loadImage);
+const GalleryLoad = (props) => {
+  const loadImageRef = useRef();
 
-  const loadMoreImage = function () {
-    const observerCallback = (entries) => {
+  useEffect(() => {
+    const observerCallback = (entries, observe) => {
       const [entry] = entries;
 
-      if (!entry.isInterSecting) return;
+      if (!entry.isIntersecting) return;
 
-      console.log("hello");
+      props.updateImage();
+
+      // observe.unobserve(entry.target);
     };
 
     const load = new IntersectionObserver(observerCallback, {
       root: null,
-      threshold: 0.15,
+      threshold: 0,
     });
 
-    // load.observe(loadImage);
-  };
-
-  loadMoreImage();
+    load.observe(loadImageRef.current);
+  }, [loadImageRef.current]);
 
   return (
     <React.Fragment>
-      <p className={style.loadImage}>Load Image</p>
+      <div ref={loadImageRef} className={style.loadImage}></div>
     </React.Fragment>
   );
 };
