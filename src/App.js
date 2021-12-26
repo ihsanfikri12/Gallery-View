@@ -5,7 +5,7 @@ import GalleryLoad from "./components/Gallery/GalleryLoad";
 
 import getImage from "./components/helpers/getImage";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
   const [inputSearch, setInputSearch] = useState("");
@@ -14,39 +14,35 @@ const App = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [activeImage, setActiveImage] = useState("");
 
+  useEffect(() => {
+    addImage("book");
+  }, []);
+
   const onClickHandler = (imageUrl) => setActiveImage(imageUrl);
 
   const removeActiveImage = () => setActiveImage("");
 
-  const addImage = async (input) => {
+  async function addImage(input) {
     cleanState();
 
-    const data = await getImage(input, page);
-    const { results } = data.data;
-
-    if (results.length === 0) return;
+    const [totalPages, results] = await getImage(input, page);
 
     setImage(results);
     setInputSearch(input);
-    setTotalPage(+data.data.total_pages);
-  };
+    setTotalPage(totalPages);
+  }
 
-  const updateImage = async () => {
-    console.log(page > totalPage);
-    const data = await getImage(inputSearch, page + 1);
-    const { results } = data.data;
-
-    if (data.length === 0) return;
-
+  async function updateImage() {
+    const [_, results] = await getImage(inputSearch, page + 1);
     setImage((currImage) => [...currImage, ...results]);
     setPage((currValue) => currValue + 1);
-  };
+  }
 
-  const cleanState = () => {
+  function cleanState() {
     setImage([]);
     setPage(1);
     setTotalPage(0);
-  };
+  }
 
   return (
     <div>

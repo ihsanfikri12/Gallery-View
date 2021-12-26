@@ -24,8 +24,6 @@ const GallerySearch = (props) => {
     setSearchInput("");
   };
 
-  // console.log(getComputedStyle(data.current).width);
-
   return (
     <div ref={data} className={style.search}>
       <form onSubmit={submitInputHandler} className={style.form}>

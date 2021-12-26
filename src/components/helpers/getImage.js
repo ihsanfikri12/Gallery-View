@@ -9,7 +9,11 @@ const image = async (input, page = 1) => {
     },
   });
 
-  return data;
+  const { results } = data.data;
+
+  if (results.length === 0) return;
+
+  return [+data.data.total_pages, results];
 };
 
 export default image;
