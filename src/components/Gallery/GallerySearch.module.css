@@ -1,9 +1,9 @@
 .search {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 2rem;
+  width: 100%;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: flex-end; */
+  padding: 2rem 10rem;
 }
 
 .icon {

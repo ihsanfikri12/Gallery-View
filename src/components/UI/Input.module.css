@@ -3,8 +3,9 @@
   border: none;
   border-bottom: 3px solid rgba(0, 0, 0, 0.5);
   padding: 2rem;
-  width: 60rem;
+  width: 100%;
   transition: all 0.5s;
+  margin: 2rem;
 }
 
 .input:focus {

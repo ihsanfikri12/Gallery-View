@@ -1,6 +1,17 @@
 .list {
-  padding: 3rem;
+  padding: 5rem;
   display: grid;
-  grid-template-columns: repeat(3, minmax(5rem, 1fr));
+  align-items: center;
+  /* justify-content: center; */
+  align-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
   gap: 3rem;
+}
+
+@media only screen and (max-width: 38em) {
+  /* .list { */
+  /* padding: 5rem; */
+  /* grid-template-columns: repeat(auto-fit, minmax(max-content, 1fr)); */
+  /* justify-content: center; */
+  /* } */
 }
