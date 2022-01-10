@@ -1,6 +1,6 @@
 import unplash from "../../api/unsplash";
 
-const image = async (input, page = 1) => {
+const image = async (input, page) => {
   const data = await unplash.get("/search/photos", {
     params: {
       query: input,
@@ -13,7 +13,8 @@ const image = async (input, page = 1) => {
 
   if (results.length === 0) return;
 
-  return [+data.data.total_pages, results];
+  // return [+data.data.total_pages, results];
+  return data.data;
 };
 
 export default image;
